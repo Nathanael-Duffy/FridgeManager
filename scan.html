@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Item - Fridge Manager</title>
+    <link rel="stylesheet" href="/gui/style.css">
+    <link rel="stylesheet" href="/gui/scan.css">
+</head>
+
+<body>
+
+<header>
+    <div>
+        <h1>Fridge Manager</h1>
+        <p class="subtitle">Smart Fridge & Freezer</p>
+    </div>
+
+    <div class="connection">
+        <span class="dot"></span>
+        System Online
+    </div>
+</header>
+
+<main class="scan-page">
+
+    <section class="card scan-card">
+
+        <h2>Scan Item</h2>
+
+        <p class="scan-instruction" id="scan-instruction">
+            Place an NFC tag on the reader and press Scan.
+        </p>
+
+        <button id="scan-button" type="button">
+            Scan NFC Tag
+        </button>
+
+        <div id="scan-result" class="scan-result hidden"></div>
+
+    </section>
+
+</main>
+
+<nav>
+    <a href="/">
+        <span>⌂</span>
+        Home
+    </a>
+
+    <a href="/gui/inventory.html">
+        <span>▤</span>
+        Inventory
+    </a>
+
+    <a href="/gui/scan.html" class="active">
+        <span>＋</span>
+        Scan Item
+    </a>
+
+    <a href="/gui/alerts.html">
+        <span>!</span>
+        Alerts
+    </a>
+
+    <a href="/gui/settings.html">
+        <span>⚙</span>
+        Settings
+    </a>
+</nav>
+
+<script src="/gui/scan.js"></script>
+
+</body>
+</html>

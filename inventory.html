@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inventory - Fridge Manager</title>
+
+    <link rel="stylesheet" href="/gui/style.css">
+    <link rel="stylesheet" href="/gui/inventory.css">
+</head>
+
+<body>
+
+<header>
+    <div>
+        <h1>Inventory</h1>
+        <p class="subtitle">Fridge & Freezer Contents</p>
+    </div>
+
+    <div class="connection">
+        <span class="dot"></span>
+        System Online
+    </div>
+</header>
+
+<main class="inventory-page">
+
+    <section class="card inventory-full">
+
+        <div class="inventory-actions">
+            <button id="add-item" type="button">
+                + Add Item
+            </button>
+        </div>
+
+        <div class="inventory-filters">
+
+            <div class="expiry-filters">
+                <button class="filter-button active" data-expiry="all">
+                    All
+                </button>
+
+                <button class="filter-button" data-expiry="expired">
+                    Expired
+                </button>
+
+                <button class="filter-button" data-expiry="3">
+                    3 Days
+                </button>
+
+                <button class="filter-button" data-expiry="7">
+                    7 Days
+                </button>
+
+                <button class="filter-button" data-expiry="14">
+                    14 Days
+                </button>
+
+                <button class="filter-button" data-expiry="30">
+                    30 Days
+                </button>
+            </div>
+
+            <div class="inventory-filter-row">
+
+                <label>
+                    Location
+
+                    <select id="location-filter">
+                        <option value="all">All</option>
+                        <option value="fridge">Fridge</option>
+                        <option value="freezer">Freezer</option>
+                    </select>
+                </label>
+
+                <label>
+                    <input id="exclude-expired" type="checkbox">
+                    Exclude expired
+                </label>
+
+            </div>
+
+        </div>
+
+        <div class="inventory-table">
+
+            <div class="inventory-column-headings">
+
+                <button class="sort-heading" data-sort="name">
+                    Item
+                    <span class="sort-arrow"></span>
+                </button>
+
+                <button class="sort-heading" data-sort="location">
+                    Location
+                    <span class="sort-arrow"></span>
+                </button>
+
+                <button class="sort-heading" data-sort="quantity">
+                    Quantity
+                    <span class="sort-arrow"></span>
+                </button>
+
+                <button class="sort-heading active" data-sort="expiry">
+                    Expiry
+                    <span class="sort-arrow">▲</span>
+                </button>
+
+                <button class="sort-heading" data-sort="status">
+                    Status
+                    <span class="sort-arrow"></span>
+                </button>
+
+            </div>
+
+            <div id="full-inventory-list">
+                <div class="empty-message">
+                    Loading inventory
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<div id="item-modal" class="modal hidden">
+
+    <div class="modal-backdrop"></div>
+
+    <div class="item-modal-panel">
+
+        <div class="modal-header">
+            <h2 id="item-modal-title">Add Item</h2>
+
+            <button id="close-item-modal"
+                    class="close-button"
+                    type="button">
+                ×
+            </button>
+        </div>
+
+        <div class="product-mode">
+
+            <label>
+                <input type="radio"
+                       name="product-mode"
+                       value="existing"
+                       checked>
+                Existing Product
+            </label>
+
+            <label>
+                <input type="radio"
+                       name="product-mode"
+                       value="new">
+                New Product
+            </label>
+
+        </div>
+
+
+        <div id="edit-product-fields" class="hidden">
+
+            <label class="form-field">
+                Product
+
+                <input id="edit-product-name"
+                       type="text"
+                       readonly>
+            </label>
+
+            <label class="form-field">
+                Category
+
+                <input id="edit-product-category"
+                       type="text"
+                       readonly>
+            </label>
+
+        </div>
+
+
+        <div id="existing-product-fields">
+
+            <label class="form-field">
+                Product
+
+                <button id="open-product-picker"
+                        class="product-select-button"
+                        type="button">
+                    Select product...
+                </button>
+            </label>
+
+        </div>
+
+
+        <div id="new-product-fields" class="hidden">
+
+            <label class="form-field">
+                Item Name
+
+                <input id="new-item-name"
+                       type="text"
+                       autocomplete="off">
+            </label>
+
+            <label class="form-field">
+                Category
+
+                <input id="new-item-category"
+                       type="text"
+                       autocomplete="off">
+            </label>
+
+        </div>
+
+
+        <div class="form-row">
+
+            <label class="form-field">
+                Quantity
+
+                <input id="item-quantity"
+                       type="number"
+                       min="1"
+                       value="1">
+            </label>
+
+            <label class="form-field">
+                Location
+
+                <select id="item-location">
+                    <option value="Fridge">Fridge</option>
+                    <option value="Freezer">Freezer</option>
+                </select>
+            </label>
+
+        </div>
+
+
+        <div class="form-row">
+
+            <label class="form-field">
+                Expiry Date
+
+                <input id="item-expiry"
+                       type="date">
+            </label>
+
+            <label class="form-field">
+                Status
+
+                <select id="item-status">
+                    <option value="ACTIVE">Active</option>
+                    <option value="INACTIVE">Inactive</option>
+                </select>
+            </label>
+
+        </div>
+
+
+        <div class="form-field">
+
+            <label for="item-nfc">
+                NFC Tag
+            </label>
+
+            <div class="nfc-field-row">
+
+                <div id="item-nfc"
+                     class="nfc-display"
+                     data-uid="">
+                    No NFC Tag
+                </div>
+
+                <button id="assign-nfc"
+                        class="hidden"
+                        type="button">
+                    Assign NFC Tag
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div id="bulk-nfc-section"
+             class="bulk-nfc-section">
+
+            <label class="bulk-nfc-option">
+                <input id="individual-nfc"
+                       type="checkbox">
+                Individually NFC tagged
+            </label>
+
+            <div id="bulk-nfc-controls"
+                 class="hidden">
+
+                <div id="bulk-nfc-progress"
+                     class="bulk-nfc-progress">
+                    Ready to scan tags
+                </div>
+
+                <button id="bulk-nfc-start"
+                        type="button">
+                    Start Tagging
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <label class="form-field">
+            Notes
+
+            <input id="item-notes"
+                   type="text"
+                   autocomplete="off">
+        </label>
+
+
+        <div id="item-form-error"
+             class="form-error hidden">
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button id="remove-item"
+                    class="remove-item-button hidden"
+                    type="button">
+                Remove Item
+            </button>
+
+            <div class="modal-actions-right">
+
+                <button id="cancel-item"
+                        type="button">
+                    Cancel
+                </button>
+
+                <button id="save-item"
+                        type="button">
+                    Add Item
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div id="product-picker" class="modal hidden">
+
+    <div class="modal-backdrop"></div>
+
+    <div class="product-picker-panel">
+
+        <div class="modal-header">
+
+            <h2>Select Product</h2>
+
+            <button id="close-product-picker"
+                    class="close-button"
+                    type="button">
+                ×
+            </button>
+
+        </div>
+
+        <input id="product-search"
+               class="product-search"
+               type="text"
+               placeholder="Search products..."
+               autocomplete="off">
+
+        <div id="product-results"
+             class="product-results">
+        </div>
+
+    </div>
+
+</div>
+
+
+<nav>
+
+    <a href="/">
+        <span>⌂</span>
+        Home
+    </a>
+
+    <a href="/gui/inventory.html"
+       class="active">
+        <span>▤</span>
+        Inventory
+    </a>
+
+    <a href="/gui/scan.html">
+        <span>＋</span>
+        Scan Item
+    </a>
+
+    <a href="/gui/alerts.html">
+        <span>!</span>
+        Alerts
+    </a>
+
+    <a href="/gui/settings.html">
+        <span>⚙</span>
+        Settings
+    </a>
+
+</nav>
+
+<script src="/gui/shared.js"></script>
+<script src="/gui/inventory.js"></script>
+
+</body>
+</html>

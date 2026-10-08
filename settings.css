@@ -1,0 +1,367 @@
+.settings-page {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    grid-template-rows: minmax(0, 1fr);
+    gap: 12px;
+    height: calc(100vh - 138px);
+    overflow: hidden;
+}
+
+.sensor-list-panel,
+.sensor-config-panel {
+    min-height: 0;
+    height: auto;
+}
+
+.sensor-list-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+#pair-sensor {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#sensor-list {
+    margin-top: 10px;
+    overflow-y: auto;
+}
+
+.sensor-list-item {
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 10px;
+    text-align: left;
+    background: #f3f5f7;
+    border: 2px solid transparent;
+}
+
+.sensor-list-item.selected {
+    border-color: #555;
+    background: #eef2f5;
+}
+
+.sensor-list-name {
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.sensor-list-detail {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 13px;
+    color: #666;
+}
+
+.sensor-config-panel {
+    overflow-y: scroll;
+    scrollbar-gutter:stable;
+}
+
+.sensor-config-panel::-webkit-scrollbar {
+    width: 14px;
+}
+
+.sensor-config-panel::-webkit-scrollbar-track {
+    background: #eef0f2;
+    border-radius: 7px;
+}
+
+.sensor-config-panel::-webkit-scrollbar-thumb {
+    background: #a8adb3;
+    border-radius: 7px;
+}
+
+.sensor-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.sensor-heading h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.sensor-mac {
+    margin-top: 3px;
+    font-size: 13px;
+    color: #777;
+}
+
+.status-badge {
+    padding: 5px 9px;
+    border-radius: 8px;
+    background: #eef2f5;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 8px 12px;
+    align-items: center;
+}
+
+.form-grid > label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-grid input,
+.form-grid select {
+    width: 100%;
+    height: 36px;
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    background: white;
+    font-size: 15px;
+}
+
+.input-unit {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.input-unit input {
+    flex: 1;
+}
+
+.input-unit span {
+    min-width: 58px;
+    font-size: 14px;
+    color: #666;
+}
+
+.switch-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.switch-row input {
+    width: 18px;
+    height: 18px;
+}
+
+.config-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.primary-action {
+    font-weight: bold;
+}
+
+button:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+.save-message {
+    min-height: 18px;
+    margin-top: 5px;
+    text-align: right;
+    font-size: 13px;
+}
+
+.learning-section {
+    margin-top: 10px;
+    padding-top: 9px;
+    border-top: 1px solid #ddd;
+}
+
+.learning-mode-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 12px;
+    align-items: center;
+    margin-top: 7px;
+}
+
+.learning-mode-row label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.learning-mode-row select {
+    width: 100%;
+    height: 36px;
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    background: white;
+    font-size: 15px;
+}
+
+.learning-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 7px;
+}
+
+.learning-label {
+    margin-bottom: 2px;
+    font-size: 13px;
+    color: #777;
+}
+
+.learning-progress {
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+.learning-details {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.learning-samples {
+    margin-top: 4px;
+    color: #666;
+}
+
+.progress-track {
+    width: 100%;
+    height: 10px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    border-radius: 5px;
+    background: #e2e5e8;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #555;
+}
+
+.sensor-management {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.pairing-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.pairing-modal[hidden] {
+    display: none;
+}
+
+.pairing-dialog {
+    width: min(520px, 100%);
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding: 24px;
+    box-sizing: border-box;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.pairing-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.pairing-header h2 {
+    margin: 0;
+}
+
+.pairing-close {
+    padding: 4px 8px;
+    border: 0;
+    background: transparent;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.pairing-form {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    gap: 12px;
+    align-items: center;
+}
+
+.pairing-form label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.pairing-form input,
+.pairing-form select {
+    width: 100%;
+    height: 38px;
+    padding: 5px 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    background: white;
+    font-size: 15px;
+}
+
+.pairing-help {
+    margin: 18px 0 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.pairing-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pairing-search-content,
+.pairing-result {
+    padding: 18px 0;
+    text-align: center;
+}
+
+.pairing-search-content h3,
+.pairing-result h3 {
+    margin: 12px 0 8px;
+}
+
+.pairing-spinner {
+    width: 42px;
+    height: 42px;
+    margin: 0 auto;
+    border: 4px solid #ddd;
+    border-top-color: #555;
+    border-radius: 50%;
+    animation: pairing-spin 0.8s linear infinite;
+}
+
+@keyframes pairing-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,277 @@
+/* =====================================================
+   FRIDGE MANAGER - STYLE STYLES
+   =====================================================
+   Core Home dashboard styling and shared visual rules for the 10.1-inch kiosk display.
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f5f7;
+    color: #20252b;
+}
+
+
+/* HEADER */
+
+header {
+    height: 70px;
+    background: white;
+    padding: 10px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid #ddd;
+}
+
+h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.subtitle {
+    margin: 3px 0 0;
+    font-size: 15px;
+    color: #777;
+}
+
+.connection {
+    font-size: 15px;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #28a745;
+}
+
+
+/* MAIN */
+
+main {
+    height: calc(100vh - 138px);
+    padding: 10px 14px;
+    overflow: hidden;
+}
+
+
+/* FRIDGE / FREEZER */
+
+.compartments {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.card {
+    background: white;
+    border-radius: 14px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.07);
+}
+
+.compartment {
+    min-height: 110px;
+}
+
+.compartment h2 {
+    margin: 0;
+    font-size: 23px;
+}
+
+.temperature {
+    font-size: 34px;
+    font-weight: bold;
+    margin: 2px 0;
+}
+
+.detail {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 0;
+
+    font-size: 15px;
+    border-top: 1px solid #eee;
+}
+
+
+/* INVENTORY + ALERTS */
+
+.inventory,
+.alerts {
+    margin-top: 6px;
+}
+
+.inventory {
+    min-height: 125px;
+}
+
+.alerts {
+    min-height: 80px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.section-title h2 {
+    margin: 0;
+    font-size: 21px;
+}
+
+button {
+    border: 0;
+    border-radius: 9px;
+    padding: 9px 15px;
+
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.empty-message {
+    color: #777;
+    padding: 10px 0 4px;
+
+    font-size: 14px;
+    text-align: center;
+}
+
+
+/* HOME INVENTORY */
+
+.inventory-heading-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#expiry-summary {
+    font-size: 14px;
+    color: #666;
+}
+
+.inventory-content {
+    display: flex;
+    margin-top: 6px;
+}
+
+#inventory-list {
+    flex: 1;
+    min-width: 0;
+}
+
+.inventory-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 0.7fr 1fr;
+    gap: 10px;
+    align-items: center;
+
+    min-height: 26px;
+    font-size: 14px;
+}
+
+.inventory-name {
+    font-weight: 600;
+}
+
+.inventory-expiry {
+    text-align: right;
+}
+
+.inventory-scroll-controls {
+    width: 46px;
+    margin-left: 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.inventory-scroll-controls button {
+    width: 42px;
+    height: 34px;
+    padding: 0;
+
+    font-size: 18px;
+}
+
+.inventory-scroll-controls button:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+
+/* ALERT ACKNOWLEDGEMENT */
+
+#acknowledge-alerts {
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 7px;
+}
+
+
+/* BOTTOM NAVIGATION */
+
+nav {
+    position: fixed;
+
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    height: 68px;
+
+    background: white;
+    border-top: 1px solid #ddd;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+    z-index: 100;
+}
+
+nav a {
+    background: white;
+    color: #20252b;
+    text-decoration: none;
+
+    padding: 5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+    font-size: 14px;
+}
+
+nav a span {
+    font-size: 21px;
+}
+
+nav a.active {
+    font-weight: bold;
+    background: #eef2f5;
+}

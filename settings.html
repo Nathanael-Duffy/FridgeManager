@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Fridge Manager</title>
+    <link rel="stylesheet" href="/gui/style.css">
+    <link rel="stylesheet" href="/gui/settings.css">
+</head>
+
+<body>
+
+<header>
+    <div>
+        <h1>Settings</h1>
+        <p class="subtitle">Sensor Management & Configuration</p>
+    </div>
+
+    <div class="connection">
+        <span class="dot"></span>
+        System Online
+    </div>
+</header>
+
+<main class="settings-page">
+
+    <section class="card sensor-list-panel">
+        <div class="section-title">
+            <h2>Sensors</h2>
+        </div>
+
+        <button
+            id="pair-sensor"
+            class="primary-action"
+            type="button"
+        >
+            + Add / Pair Sensor
+        </button>
+
+        <div id="sensor-list">
+            <div class="empty-message">
+                Loading sensors
+            </div>
+        </div>
+    </section>
+
+    <section class="card sensor-config-panel">
+
+        <div id="no-sensor-selected" class="empty-message">
+            Select a sensor to configure
+        </div>
+
+        <div id="sensor-config" hidden>
+
+            <div class="sensor-heading">
+                <div>
+                    <h2 id="selected-sensor-name">
+                        Sensor
+                    </h2>
+
+                    <div
+                        id="selected-sensor-mac"
+                        class="sensor-mac"
+                    ></div>
+                </div>
+
+                <span
+                    id="selected-sensor-status"
+                    class="status-badge"
+                >
+                    --
+                </span>
+            </div>
+
+            <div class="form-grid">
+
+                <label for="device-name">
+                    Sensor Name
+                </label>
+
+                <input
+                    id="device-name"
+                    type="text"
+                >
+
+                <label for="compartment">
+                    Compartment
+                </label>
+
+                <select id="compartment">
+                    <option value="fridge">
+                        Fridge
+                    </option>
+
+                    <option value="freezer">
+                        Freezer
+                    </option>
+                </select>
+
+                <label for="min-temp">
+                    Minimum Temperature
+                </label>
+
+                <div class="input-unit">
+                    <input
+                        id="min-temp"
+                        type="number"
+                        step="0.1"
+                    >
+                    <span>&deg;C</span>
+                </div>
+
+                <label for="max-temp">
+                    Maximum Temperature
+                </label>
+
+                <div class="input-unit">
+                    <input
+                        id="max-temp"
+                        type="number"
+                        step="0.1"
+                    >
+                    <span>&deg;C</span>
+                </div>
+
+                <label for="door-warning">
+                    Door Warning
+                </label>
+
+                <div class="input-unit">
+                    <input
+                        id="door-warning"
+                        type="number"
+                        min="1"
+                        step="1"
+                    >
+                    <span>seconds</span>
+                </div>
+
+                <label for="sensor-enabled">
+                    Sensor Enabled
+                </label>
+
+                <label class="switch-row">
+                    <input
+                        id="sensor-enabled"
+                        type="checkbox"
+                    >
+                    <span id="enabled-text">
+                        Enabled
+                    </span>
+                </label>
+
+            </div>
+
+            <div class="config-actions">
+
+                <button
+                    id="recommended-values"
+                    type="button"
+                >
+                    Recommended Values
+                </button>
+
+                <button
+                    id="save-config"
+                    class="primary-action"
+                    type="button"
+                >
+                    Save Configuration
+                </button>
+
+            </div>
+
+            <div
+                id="save-message"
+                class="save-message"
+            ></div>
+
+            <div class="learning-section">
+
+                <div class="section-title">
+                    <h2>Learning</h2>
+                </div>
+
+                <div class="learning-mode-row">
+
+                    <label for="learning-mode">
+                        Learning Duration
+                    </label>
+
+                    <select id="learning-mode">
+                        <option value="1">
+                            Fast - 2 Hours
+                        </option>
+
+                        <option value="2">
+                            24 Hours
+                        </option>
+
+                        <option value="3">
+                            48 Hours
+                        </option>
+                    </select>
+
+                </div>
+
+                <div class="learning-row">
+
+                    <div>
+                        <div class="learning-label">
+                            Status
+                        </div>
+
+                        <strong id="learning-status">
+                            Not Trained
+                        </strong>
+                    </div>
+
+                    <button
+                        id="learning-action"
+                        type="button"
+                    >
+                        Start Learning
+                    </button>
+
+                </div>
+
+                <div
+                    id="learning-progress"
+                    class="learning-progress"
+                    hidden
+                >
+
+                    <div class="progress-track">
+                        <div
+                            id="progress-bar"
+                            class="progress-bar"
+                        ></div>
+                    </div>
+
+                    <div class="learning-details">
+                        <span id="learning-progress-text">
+                            0%
+                        </span>
+
+                        <span id="learning-remaining">
+                            -- remaining
+                        </span>
+                    </div>
+
+                    <div class="learning-samples">
+                        Samples:
+                        <span id="learning-sample-count">
+                            0
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="sensor-management">
+
+                <button
+                    id="repair-sensor"
+                    type="button"
+                    disabled
+                >
+                    Re-pair Sensor
+                </button>
+
+                <button
+                    id="remove-sensor"
+                    type="button"
+                    disabled
+                >
+                    Remove Sensor
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<div
+    id="pairing-modal"
+    class="pairing-modal"
+    hidden
+>
+
+    <div class="pairing-dialog">
+
+        <div class="pairing-header">
+
+            <h2>Add Sensor</h2>
+
+            <button
+                id="pairing-close"
+                class="pairing-close"
+                type="button"
+                aria-label="Close"
+            >
+                &times;
+            </button>
+
+        </div>
+
+        <div id="pairing-setup">
+
+            <div class="pairing-form">
+
+                <label for="pairing-name">
+                    Sensor Name
+                </label>
+
+                <input
+                    id="pairing-name"
+                    type="text"
+                    placeholder="e.g. Freezer Sensor"
+                >
+
+                <label>
+                    Compartment
+                </label>
+
+                <div class="pairing-radio-group">
+
+                    <label class="pairing-radio-option">
+                        <input
+                            id="pairing-fridge"
+                            type="radio"
+                            name="pairing-compartment"
+                            value="fridge"
+                            checked
+                        >
+                        <span>Fridge</span>
+                    </label>
+
+                    <label class="pairing-radio-option">
+                        <input
+                            id="pairing-freezer"
+                            type="radio"
+                            name="pairing-compartment"
+                            value="freezer"
+                        >
+                        <span>Freezer</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+            <p class="pairing-help">
+                Enter the sensor details, then start pairing.
+                Turn on or reset the new sensor when searching begins.
+            </p>
+
+            <div class="pairing-actions">
+
+                <button
+                    id="pairing-cancel"
+                    type="button"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    id="pairing-start"
+                    class="primary-action"
+                    type="button"
+                >
+                    Start Pairing
+                </button>
+
+            </div>
+
+        </div>
+
+        <div
+            id="pairing-search"
+            hidden
+        >
+
+            <div class="pairing-search-content">
+
+                <div class="pairing-spinner"></div>
+
+                <h3 id="pairing-status-title">
+                    Searching for Sensor
+                </h3>
+
+                <p id="pairing-status-text">
+                    Turn on or reset the new sensor.
+                </p>
+
+            </div>
+
+            <div class="pairing-actions">
+
+                <button
+                    id="pairing-search-cancel"
+                    type="button"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
+        </div>
+
+        <div
+            id="pairing-success"
+            hidden
+        >
+
+            <div class="pairing-result">
+
+                <h3>Sensor Added</h3>
+
+                <strong id="paired-sensor-name">
+                    Sensor
+                </strong>
+
+                <span id="paired-sensor-compartment">
+                    --
+                </span>
+
+                <p>
+                    Sensor connected successfully.
+                </p>
+
+            </div>
+
+            <div class="pairing-actions">
+
+                <button
+                    id="pairing-done"
+                    class="primary-action"
+                    type="button"
+                >
+                    Done
+                </button>
+
+            </div>
+
+        </div>
+
+        <div
+            id="pairing-error"
+            hidden
+        >
+
+            <div class="pairing-result">
+
+                <h3>Pairing Unsuccessful</h3>
+
+                <p id="pairing-error-text">
+                    Sensor could not be paired.
+                </p>
+
+            </div>
+
+            <div class="pairing-actions">
+
+                <button
+                    id="pairing-retry"
+                    class="primary-action"
+                    type="button"
+                >
+                    Try Again
+                </button>
+
+                <button
+                    id="pairing-error-cancel"
+                    type="button"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<nav>
+    <a href="/">
+        <span>⌂</span>
+        Home
+    </a>
+
+    <a href="/gui/inventory.html">
+        <span>▤</span>
+        Inventory
+    </a>
+
+    <a href="/gui/scan.html">
+        <span>＋</span>
+        Scan Item
+    </a>
+
+    <a href="/gui/alerts.html">
+        <span>!</span>
+        Alerts
+    </a>
+
+    <a
+        href="/gui/settings.html"
+        class="active"
+    >
+        <span>⚙</span>
+        Settings
+    </a>
+</nav>
+
+<script src="/gui/shared.js"></script>
+<script src="/gui/settings.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerts - Fridge Manager</title>
+
+    <link rel="stylesheet" href="/gui/style.css">
+    <link rel="stylesheet" href="/gui/alerts.css">
+</head>
+
+<body>
+
+<header>
+    <div>
+        <h1>Alerts</h1>
+        <p class="subtitle">Warnings & Event History</p>
+    </div>
+
+    <div class="connection">
+        <span class="dot"></span>
+        System Online
+    </div>
+</header>
+
+<main class="alerts-page">
+
+    <section class="card active-alerts-card">
+
+        <div class="section-title">
+            <h2>Active Alerts</h2>
+
+            <button id="silence-alerts" type="button" style="display: none;">
+                Silence Alert
+            </button>
+        </div>
+
+        <div id="active-alert-list">
+            <div class="empty-message">
+                No active alerts
+            </div>
+        </div>
+
+    </section>
+
+    <section class="card alert-history-card">
+
+        <div class="section-title">
+            <h2>Alert History</h2>
+
+            <div class="history-controls">
+                <select id="history-filter">
+                    <option value="all">All Events</option>
+                    <option value="active">Unacknowledged</option>
+                    <option value="critical">Critical</option>
+                    <option value="warning">Warnings</option>
+                    <option value="info">Information</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="history-header">
+            <span>Time</span>
+            <span>Source</span>
+            <span>Event</span>
+            <span>Description</span>
+            <span>Status</span>
+        </div>
+
+        <div id="history-list">
+            <div class="empty-message">
+                Loading alert history
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+<nav>
+    <a href="/">
+        <span>⌂</span>
+        Home
+    </a>
+
+    <a href="/gui/inventory.html">
+        <span>▤</span>
+        Inventory
+    </a>
+
+    <a href="/gui/scan.html">
+        <span>＋</span>
+        Scan Item
+    </a>
+
+    <a href="/gui/alerts.html" class="active">
+        <span>!</span>
+        Alerts
+    </a>
+
+    <a href="/gui/settings.html">
+        <span>⚙</span>
+        Settings
+    </a>
+</nav>
+
+<script src="/gui/alerts.js"></script>
+
+</body>
+</html>

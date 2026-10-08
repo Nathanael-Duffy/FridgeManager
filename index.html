@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fridge Manager</title>
+    <link rel="stylesheet" href="/gui/style.css">
+</head>
+
+<body>
+
+<header>
+    <div>
+        <h1>Fridge Manager</h1>
+        <p class="subtitle">Smart Fridge & Freezer</p>
+    </div>
+
+    <div class="connection">
+        <span class="dot"></span>
+        System Online
+    </div>
+</header>
+
+
+<main>
+
+    <section class="compartments">
+
+        <div class="card compartment">
+            <h2>Fridge</h2>
+            <div class="temperature" id="fridge-temp">--°C</div>
+
+            <div class="detail">
+                Door
+                <strong id="fridge-door">--</strong>
+            </div>
+
+            <div class="detail">
+                Status
+                <strong id="fridge-status">Waiting</strong>
+            </div>
+        </div>
+
+
+        <div class="card compartment">
+            <h2>Freezer</h2>
+            <div class="temperature" id="freezer-temp">--°C</div>
+
+            <div class="detail">
+                Door
+                <strong id="freezer-door">--</strong>
+            </div>
+
+            <div class="detail">
+                Status
+                <strong id="freezer-status">Waiting</strong>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="card inventory">
+
+      <div class="section-title">
+    <h2>Inventory</h2>
+
+    <div class="inventory-heading-actions">
+        <span id="expiry-summary"></span>
+    </div>
+</div>
+
+<div class="inventory-content">
+
+    <div id="inventory-list">
+        <div class="empty-message">
+            Loading inventory
+        </div>
+    </div>
+
+    <div class="inventory-scroll-controls">
+        <button id="inventory-up" type="button" aria-label="Scroll inventory up">▲</button>
+        <button id="inventory-down" type="button" aria-label="Scroll inventory down">▼</button>
+    </div>
+
+</div>
+
+    </section>
+
+
+    <section class="card alerts">
+
+        <div class="section-title">
+            <h2>Active Alerts</h2>
+        <button id="acknowledge-alerts" type="button" style="display: none;">
+			Silence Alert
+		</button>
+        </div>
+
+        <div id="alert-list">
+            <div class="empty-message">
+                No active alerts
+            </div>
+        </div>
+		    </section>
+
+</main>
+
+
+<nav>
+    <a href="/" class="active">
+        <span>⌂</span>
+        Home
+    </a>
+
+    <a href="/gui/inventory.html">
+        <span>▤</span>
+        Inventory
+    </a>
+
+    <a href="/gui/scan.html">
+        <span>＋</span>
+        Scan Item
+    </a>
+
+    <a href="/gui/alerts.html">
+        <span>!</span>
+        Alerts
+    </a>
+
+    <a href="/gui/settings.html">
+        <span>⚙</span>
+        Settings
+    </a>
+</nav>
+
+<script src="/gui/app.js"></script>
+
+</body>
+</html>

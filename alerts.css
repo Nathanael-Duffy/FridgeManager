@@ -1,0 +1,146 @@
+.alerts-page {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.active-alerts-card {
+    flex-shrink: 0;
+    min-height: 90px;
+}
+
+#silence-alerts {
+    padding: 7px 14px;
+    font-size: 14px;
+}
+
+#active-alert-list {
+    margin-top: 8px;
+}
+
+.active-alert-item {
+    display: grid;
+    grid-template-columns: 110px 1fr auto;
+    gap: 12px;
+    align-items: center;
+
+    padding: 8px 10px;
+    margin-top: 5px;
+
+    border-radius: 8px;
+    background: #f3f5f7;
+}
+
+.active-alert-type {
+    font-weight: bold;
+}
+
+.active-alert-description {
+    font-size: 14px;
+}
+
+.active-alert-status {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.alert-history-card {
+    flex: 1;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.history-controls {
+    display: flex;
+    align-items: center;
+}
+
+#history-filter {
+    min-width: 150px;
+    height: 34px;
+
+    padding: 4px 8px;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    background: white;
+    font-size: 14px;
+}
+
+.history-header,
+.history-item {
+    display: grid;
+    grid-template-columns: 125px 120px 150px 1fr 105px;
+    gap: 8px;
+    align-items: center;
+}
+
+.history-header {
+    flex-shrink: 0;
+
+    margin-top: 8px;
+    padding: 6px 8px;
+
+    border-bottom: 1px solid #ddd;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+#history-list {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.history-item {
+    min-height: 44px;
+    padding: 6px 8px;
+
+    border-bottom: 1px solid #eee;
+
+    font-size: 13px;
+}
+
+.history-time {
+    line-height: 1.3;
+}
+
+.history-source {
+    font-weight: 600;
+}
+
+.history-type {
+    font-weight: 600;
+}
+
+.history-description {
+    line-height: 1.3;
+}
+
+.history-status {
+    text-align: center;
+
+    padding: 4px 7px;
+    border-radius: 7px;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    background: #eef2f5;
+}
+
+.history-item.severity-critical {
+    border-left: 4px solid #c62828;
+}
+
+.history-item.severity-warning {
+    border-left: 4px solid #ef8c00;
+}
+
+.history-item.severity-info {
+    border-left: 4px solid #607d8b;
+}
